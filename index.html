@@ -468,10 +468,14 @@ function renderPanel(data) {
   const flights = gates[currentGate] || [];
   const info = GATE_INFO[currentGate];
 
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('羽田空港 ' + info.terminal)}`;
   let html = `<div class="panel active">
     <div class="gate-info">
-      <strong>${currentGate}</strong> — ${info.desc}
-      <br><small>※ 表示時刻は到着予定時刻の概算（国内線: 着陸+15分 / 国際線: 着陸+30分）</small>
+      <div class="gate-info-text">
+        <strong>${currentGate}</strong> — ${info.desc}
+        <br><small>※ 表示時刻は到着予定時刻の概算（国内線: 着陸+15分 / 国際線: 着陸+30分）</small>
+      </div>
+      <a class="map-btn" href="${mapUrl}" target="_blank" rel="noopener">🗺️ 地図</a>
     </div>`;
 
   if (flights.length === 0) {
